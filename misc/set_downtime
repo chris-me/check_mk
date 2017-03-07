@@ -1,0 +1,51 @@
+#!/usr/bin/env python2
+
+# Script to insert a new downtime on a CheckMK instance
+# Example for 5 minute host downtime:
+# ./set_downtime -b "http://server/cmk" -u automator -s somesecret -t "host" -H HOSTNAME -d 5 -c "some test"
+# Example for 5 minute service downtime:
+# ./set_downtime -b "http://server/cmk" -u automator -s somesecret -t "service" -H HOSTNAME -S "CPU load" -d 5 -c "some test"
+
+import sys
+import argparse
+import urllib2
+
+def do_request(args):
+  comment = urllib2.quote(args.comment)
+  if args.type == "host":
+    request_string = args.baseurl + "/check_mk/view.py?_username=" + args.username + \
+      "&_secret=" + args.secret + "&_transid=-1&_do_confirm=yes&_do_actions=yes&host=" + \
+      args.host + "&_down_from_now=yes&_down_minutes=" + \
+      args.duration + "&_down_comment=" + comment + "&view_name=hoststatus"
+  elif args.type == "service":
+    service = urllib2.quote(args.service)
+    request_string = args.baseurl + "/check_mk/view.py?_username=" + args.username + \
+      "&_secret=" + args.secret + "&_transid=-1&_do_confirm=yes&_do_actions=yes&host=" + \
+      args.host + "&service=" + service + "&_down_from_now=yes&_down_minutes=" + \
+      args.duration + "&_down_comment=" + comment + "&view_name=service"
+  else:
+    print "Error: Incorrect downtime type ('host' or 'service') given"
+    sys.exit(1)
+  
+  response = urllib2.urlopen(request_string)
+  html_response = response.read()
+  response.close()
+  if "Successfully sent" in html_response:
+    print "Success"
+  else:
+    print "Error"
+    #print html_response
+
+parser = argparse.ArgumentParser(description='Set a new downtime for one service of a host on a CheckMK Server')
+parser.add_argument('-b', required=True, help='CheckMK Base URL, e.g. http://server/cmk', metavar='BASEURL', dest='baseurl')
+parser.add_argument('-u', required=True, help='Username', metavar='USERNAME', dest='username')
+parser.add_argument('-s', required=True, help='Automation secret', metavar='SECRET', dest='secret')
+parser.add_argument('-t', required=True, help='Type of Downtime ("host" or "service")', metavar='TYPE', dest='type')
+parser.add_argument('-H', required=True, help='Host to set Downtime for', metavar='HOST', dest='host')
+parser.add_argument('-S', required=False, help='Service name to set Downtime for', metavar='SERVICE', dest='service')
+parser.add_argument('-d', required=True, help='Downtime duration (in minutes)', metavar='DURATION', dest='duration')
+parser.add_argument('-c', required=True, help='Downtime comment', metavar='COMMENT', dest='comment')
+args = parser.parse_args()
+
+do_request(args)
+
