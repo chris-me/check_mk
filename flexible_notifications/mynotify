@@ -1,0 +1,8 @@
+#!/bin/bash
+# Notify via foo bar
+
+echo "##############################################################"
+echo "I am called. Yay!"
+echo $NOTIFY_HOSTALIAS
+printenv
+echo "##############################################################"
