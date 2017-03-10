@@ -1,20 +1,24 @@
+# set default value of variable (user can override in main.mk)
+my_example_check_default_values = (350, 650)
+
 # the inventory function (dummy)
 def inventory_my_example_check(info):
   #print info
   for line in info:
     item = line[0]
     #print item
-    yield item, None
+    yield item, "my_example_check_default_values"
   #return []
 
 # the check function (dummy)
 def check_my_example_check(item, params, info):
+  warn, crit = params
   for line in info:
     if line[0] == item:
       val = int(line[1])
-      if val > 650:
+      if val > crit:
         return 2, "Value is %d!" % val
-      elif val > 450:
+      elif val > warn:
         return 1, "Value is %d!" % val
       else:
         return 0, "Value is %d." % val
