@@ -4,10 +4,6 @@ Checks, plugins and other stuff related to CheckMK
 
 # Flexible Notifications
 
-## Sources
-
-* https://mathias-kettner.de/checkmk_flexible_notifications.html
-
 ## About
 
 If you want to notify someone via CheckMK in a way that is not included already
@@ -24,6 +20,10 @@ CheckMK. It also outputs all current environment variables.
 * Use the new Notification method and for testing simply check 'notify all users'
 * Now go and trigger some notifications
 * You can track the output of your script in the file '~/var/log/notify.log'
+
+## Sources
+
+* https://mathias-kettner.de/checkmk_flexible_notifications.html
 
 # Local Checks
 
