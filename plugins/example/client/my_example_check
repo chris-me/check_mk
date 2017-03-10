@@ -1,0 +1,12 @@
+#!/usr/bin/python
+
+# Example CheckMK Client plugin that outputs 5 items with random values
+# Put this file at /usr/lib/check_mk_agent/plugins/ and make sure
+# it is executable
+
+from random import randint
+
+print '<<<my_example_check>>>'
+
+for item in range(5):
+    print "%d %d" % ((item+1), randint(0, 1000) )

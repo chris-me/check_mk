@@ -40,3 +40,33 @@ are currently locked.
 
 Python script to set downtimes of services and/or hosts. Can be executed from
 anywhere the CheckMK Server instance is reachable via http request.
+
+# Plugins - Work-In-Progress
+
+How To write your own CheckMK Plugins
+
+## Installation
+
+### Linux Client
+
+* Copy 'my_example_plugin' to /usr/lib/check_mk_agent/plugins/
+* Make file executable
+* Plugin output should now be in the output of server (try command check_mk_agent)
+* At the Server (for testing):
+
+```bash
+cmk -d SERVERNAME
+```
+
+### Server
+
+* Copy 'my_example_check' to '/opt/omd/sites/mctest/local/share/check_mk/checks/'
+* 'cmk -L' should now already show the check
+* Restart CheckMK service 'cmk -R'
+* After service discovery in WATO there should now be 5 new services
+* Activate as usual
+
+## Sources
+
+* https://mathias-kettner.de/checkmk_writing_checks.html
+* https://mathias-kettner.de/checkmk_devel_agentbased.html

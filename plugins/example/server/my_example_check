@@ -1,0 +1,27 @@
+# the inventory function (dummy)
+def inventory_my_example_check(info):
+  #print info
+  for line in info:
+    item = line[0]
+    #print item
+    yield item, None
+  #return []
+
+# the check function (dummy)
+def check_my_example_check(item, params, info):
+  for line in info:
+    if line[0] == item:
+      val = int(line[1])
+      if val > 650:
+        return 2, "Value is %d!" % val
+      elif val > 450:
+        return 1, "Value is %d!" % val
+      else:
+        return 0, "Value is %d." % val
+
+# declare the check to CheckMK
+check_info["my_example_check"] = {
+  'check_function':           check_my_example_check,
+  'inventory_function':       inventory_my_example_check,
+  'service_description':      'Example item %s',
+}
