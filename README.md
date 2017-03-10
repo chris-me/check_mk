@@ -25,8 +25,18 @@ CheckMK. It also outputs all current environment variables.
 * Now go and trigger some notifications
 * You can track the output of your script in the file '~/var/log/notify.log'
 
+# Local Checks
+
+## Active Directory
+
+### Locked ActiveDirectory Accounts
+
+Local check plugin to drop on a windows machine for checking if certain accounts
+are currently locked.
+
 # Misc
 
 ## Downtime script
 
-Python script to set downtimes of services and/or hosts
+Python script to set downtimes of services and/or hosts. Can be executed from
+anywhere the CheckMK Server instance is reachable via http request.
