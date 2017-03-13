@@ -72,3 +72,6 @@ cmk -d SERVERNAME
 
 * https://mathias-kettner.de/checkmk_writing_checks.html
 * https://mathias-kettner.de/checkmk_devel_agentbased.html
+* http://lists.mathias-kettner.de/pipermail/checkmk-en/2015-August/016756.html
+* https://www.karl-deutsch.at/dir_size_check_mk.html
+
