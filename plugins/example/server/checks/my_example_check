@@ -17,17 +17,19 @@ def check_my_example_check(item, params, info):
   for line in info:
     if line[0] == item:
       val = int(line[1])
+      perfdata = [ ("example_units", val, warn, crit, 0, 1000) ]
       if val > crit:
-        return 2, "Value is %d!" % val
+        return 2, "Value is %d!" % val, perfdata
       elif val > warn:
-        return 1, "Value is %d!" % val
+        return 1, "Value is %d!" % val, perfdata
       else:
-        return 0, "Value is %d." % val
+        return 0, "Value is %d." % val, perfdata
 
 # declare the check to CheckMK
 check_info["my_example_check"] = {
   'check_function':           check_my_example_check,
   'inventory_function':       inventory_my_example_check,
   'service_description':      'Example item %s',
-  'group':                    'my_example_check'
+  'group':                    'my_example_check',
+  'has_perfdata':             True
 }
