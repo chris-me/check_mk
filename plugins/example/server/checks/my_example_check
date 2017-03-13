@@ -12,6 +12,7 @@ def inventory_my_example_check(info):
 
 # the check function (dummy)
 def check_my_example_check(item, params, info):
+  #print params
   warn, crit = params
   for line in info:
     if line[0] == item:
@@ -28,4 +29,5 @@ check_info["my_example_check"] = {
   'check_function':           check_my_example_check,
   'inventory_function':       inventory_my_example_check,
   'service_description':      'Example item %s',
+  'group':                    'my_example_check'
 }

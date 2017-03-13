@@ -60,11 +60,13 @@ cmk -d SERVERNAME
 
 ### Server
 
-* Copy 'my_example_check' to '/opt/omd/sites/mctest/local/share/check_mk/checks/'
+* Copy 'server/checks/my_example_check' to '/opt/omd/sites/yoursite/local/share/check_mk/checks/'
+* Copy 'server/wato/my_example_check.py' to '/opt/omd/sites/yoursite/local/share/check_mk/web/plugins/wato/'
 * 'cmk -L' should now already show the check
 * Restart CheckMK service 'cmk -R'
 * After service discovery in WATO there should now be 5 new services
 * Activate as usual
+* Check parameters (warn, crit) can be adjusted va WATO
 
 ## Sources
 
