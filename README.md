@@ -41,9 +41,10 @@ are currently locked.
 Python script to set downtimes of services and/or hosts. Can be executed from
 anywhere the CheckMK Server instance is reachable via http request.
 
-# Plugins - Work-In-Progress
+# Plugins
 
-How To write your own CheckMK Plugins
+How To write your own CheckMK Plugins, including performance data, possiblity to
+configure with WATO and Perf-O-Meter outputs
 
 ## Installation
 
@@ -60,8 +61,11 @@ cmk -d SERVERNAME
 
 ### Server
 
-* Copy 'server/checks/my_example_check' to '/opt/omd/sites/yoursite/local/share/check_mk/checks/'
-* Copy 'server/wato/my_example_check.py' to '/opt/omd/sites/yoursite/local/share/check_mk/web/plugins/wato/'
+In the plugins / example directory:
+
+* Copy (or symlink) 'server/checks/my_example_check' to '/opt/omd/sites/yoursite/local/share/check_mk/checks/'
+* Copy (or symlink) 'server/wato/my_example_check.py' to '/opt/omd/sites/yoursite/local/share/check_mk/web/plugins/wato/'
+* Copy (or symlink) 'server/perfometer/my_example_check.py' to '/opt/omd/sites/yoursite/local/share/check_mk/web/plugins/perfometer/'
 * 'cmk -L' should now already show the check
 * Restart CheckMK service 'cmk -R'
 * After service discovery in WATO there should now be 5 new services
@@ -74,4 +78,5 @@ cmk -d SERVERNAME
 * https://mathias-kettner.de/checkmk_devel_agentbased.html
 * http://lists.mathias-kettner.de/pipermail/checkmk-en/2015-August/016756.html
 * https://www.karl-deutsch.at/dir_size_check_mk.html
+* https://mathias-kettner.de/checkmk_devel_perfometer.html
 
