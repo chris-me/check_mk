@@ -50,7 +50,7 @@ configure with WATO and Perf-O-Meter outputs
 
 ### Linux Client
 
-* Copy 'my_example_plugin' to /usr/lib/check_mk_agent/plugins/
+* Copy 'my_example_check' to /usr/lib/check_mk_agent/plugins/
 * Make file executable
 * Plugin output should now be in the output of server (try command check_mk_agent)
 * At the Server (for testing):
