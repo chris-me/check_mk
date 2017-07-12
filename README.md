@@ -87,3 +87,11 @@ In the plugins / example directory:
 * https://www.karl-deutsch.at/dir_size_check_mk.html
 * https://mathias-kettner.de/checkmk_devel_perfometer.html
 
+### Microsoft Exchange Databasw Whitespace
+
+Monitor Exchange Databases current whitespace. Includes Graphs and possibility to adjust values with WATO
+
+#### Installation
+
+TBD
+
