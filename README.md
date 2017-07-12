@@ -2,9 +2,11 @@
 
 Checks, plugins and other stuff related to CheckMK
 
-# Flexible Notifications
+- [Flexible Notifications](#flexible-notifications)
 
-## About
+## Flexible Notifications
+
+### About
 
 If you want to notify someone via CheckMK in a way that is not included already
 (like E-Mail or smstools), you can write your own notification script. As an
@@ -12,7 +14,7 @@ example you can use the 'mynotify' script in this repo to help getting started.
 The script is very short and simply shows how to use variables received from 
 CheckMK. It also outputs all current environment variables.
 
-## Howto Use
+### Howto Use
 
 * Put the 'mynotify' script to '~/local/share/check_mk/notifications/'
 * Make sure its executable
@@ -21,34 +23,34 @@ CheckMK. It also outputs all current environment variables.
 * Now go and trigger some notifications
 * You can track the output of your script in the file '~/var/log/notify.log'
 
-## Sources
+### Sources
 
 * https://mathias-kettner.de/checkmk_flexible_notifications.html
 
-# Local Checks
+## Local Checks
 
-## Active Directory
+### Active Directory
 
-### Locked ActiveDirectory Accounts
+#### Locked ActiveDirectory Accounts
 
 Local check plugin to drop on a windows machine for checking if certain accounts
 are currently locked.
 
-# Misc
+## Misc
 
-## Downtime script
+### Downtime script
 
 Python script to set downtimes of services and/or hosts. Can be executed from
 anywhere the CheckMK Server instance is reachable via http request.
 
-# Plugins
+## Plugins
 
 How To write your own CheckMK Plugins, including performance data, possiblity to
 configure with WATO and Perf-O-Meter outputs
 
-## Installation
+### Installation
 
-### Linux Client
+#### Linux Client
 
 * Copy 'my_example_check' to /usr/lib/check_mk_agent/plugins/
 * Make file executable
@@ -59,7 +61,7 @@ configure with WATO and Perf-O-Meter outputs
 cmk -d SERVERNAME
 ```
 
-### Server
+#### Server
 
 In the plugins / example directory:
 
@@ -72,7 +74,7 @@ In the plugins / example directory:
 * Activate as usual
 * Check parameters (warn, crit) can be adjusted va WATO
 
-## Sources
+### Sources
 
 * https://mathias-kettner.de/checkmk_writing_checks.html
 * https://mathias-kettner.de/checkmk_devel_agentbased.html
