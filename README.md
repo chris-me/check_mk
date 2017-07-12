@@ -3,6 +3,9 @@
 Checks, plugins and other stuff related to CheckMK
 
 - [Flexible Notifications](#flexible-notifications)
+- [Local Checks](#local-checks)
+- [Misc](#misc)
+- [Plugins](#plugins)
 
 ## Flexible Notifications
 
@@ -45,12 +48,14 @@ anywhere the CheckMK Server instance is reachable via http request.
 
 ## Plugins
 
-How To write your own CheckMK Plugins, including performance data, possiblity to
+### Example
+
+An example on how To write your own CheckMK Plugins, including performance data, possiblity to
 configure with WATO and Perf-O-Meter outputs
 
-### Installation
+#### Installation
 
-#### Linux Client
+##### Linux Client
 
 * Copy 'my_example_check' to /usr/lib/check_mk_agent/plugins/
 * Make file executable
@@ -61,7 +66,7 @@ configure with WATO and Perf-O-Meter outputs
 cmk -d SERVERNAME
 ```
 
-#### Server
+##### Server
 
 In the plugins / example directory:
 
@@ -74,7 +79,7 @@ In the plugins / example directory:
 * Activate as usual
 * Check parameters (warn, crit) can be adjusted va WATO
 
-### Sources
+#### Sources
 
 * https://mathias-kettner.de/checkmk_writing_checks.html
 * https://mathias-kettner.de/checkmk_devel_agentbased.html
