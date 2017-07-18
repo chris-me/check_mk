@@ -5,8 +5,9 @@ register_check_parameters(
     Tuple(
         title = _("Parameters"),
         elements = [
-            Integer(title = _("Warning if below (in MB)"), default_value = 20),
-            Integer(title = _("Critical if below (in MB)"), default_value = 10),
+            Integer(title = _("Everything is OK as long as the database is less than (in MB)"), default_value = 500),
+            Integer(title = _("Warning if Whitespace is below (in MB)"), default_value = 200),
+            Integer(title = _("Critical if Whitespace is below (in MB)"), default_value = 100),
         ]
     ),
     TextAscii(

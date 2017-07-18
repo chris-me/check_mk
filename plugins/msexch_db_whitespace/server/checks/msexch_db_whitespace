@@ -1,42 +1,41 @@
 # set default value of variable (user can override in main.mk)
-msexch_db_whitespace_default_values = (20, 10)
+msexch_db_whitespace_default_values = (500, 200, 100)
 
-# the inventory function (dummy)
 def inventory_msexch_db_whitespace(info):
   for line in info:
     item = line[0]
     yield item, "msexch_db_whitespace_default_values"
-   #return []
 
-# the check function (dummy)
 def check_msexch_db_whitespace(item, params, info):
-  #print info
-  warn, crit = params
+  max_db_size, warn, crit = params
+  #print params
   for line in info:
     if line[0] == item:
-      mailbox_size = int(line[1])
+      db_size = int(line[1])
       whitespace = int(line[2])
-      #whitespace_percentage = whitespace * 100 / mailbox_size
-      #percent_used = 100 - whitespace_percentage
-      #return 3, "Not implemented"
 
-      return_string = "Mailbox size is %d MB, Whitespace is %d MB." % (
-        mailbox_size, whitespace)
+      return_string = "Database size is %d MB, Whitespace is %d MB." % (
+        db_size, whitespace)
       perfdata = []
-      perfdata.append( ("Mailbox size", mailbox_size) )
+      perfdata.append( ("Mailbox size", db_size) )
       perfdata.append( ("Whitespace", whitespace, warn, crit) )
-      if whitespace < crit:
-        return 2, return_string, perfdata
-      elif whitespace < warn:
-        return 1, return_string, perfdata
-      else:
+
+      if db_size < max_db_size:
         return 0, return_string, perfdata
+      else:
+        if whitespace < crit:
+          return 2, return_string, perfdata
+        elif whitespace < warn:
+          return 1, return_string, perfdata
+        else:
+          return 0, return_string, perfdata
 
 # declare the check to CheckMK
 check_info["msexch_db_whitespace"] = {
   'check_function':           check_msexch_db_whitespace,
   'inventory_function':       inventory_msexch_db_whitespace,
-  'service_description':      'Mailbox Database %s',
+  'service_description':      'Whitespace Mailbox Database %s',
   'group':                    'msexch_db_whitespace',
   'has_perfdata':             True
 }
+
