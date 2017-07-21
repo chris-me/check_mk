@@ -39,6 +39,12 @@ CheckMK. It also outputs all current environment variables.
 Local check plugin to drop on a windows machine for checking if certain accounts
 are currently locked.
 
+### Windows Tasks
+
+#### Tasks last run state
+
+PowerShell Script to check if specified tasks last run return value was successful
+
 ## Misc
 
 ### Downtime script
