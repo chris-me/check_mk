@@ -101,3 +101,10 @@ Monitor Exchange Databases current whitespace. Includes Graphs and possibility t
 
 The plugin is fully working, installation instructions to be done (not hard anyway).
 
+### DataWizard Lobster
+
+Monitor running DataWizard Lobster performance data with locally running monitor.jsp. Currently implemented is Memory.
+
+#### Installation
+
+The plugin is fully working, installation instructions to be done (not hard anyway).
