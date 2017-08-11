@@ -1,0 +1,28 @@
+lobster_mem_default_values=(80, 90)
+
+def inventory_lobster_mem(info):
+   for line in info:
+     item = line[0]
+     yield item, "lobster_mem_default_values"
+
+def check_lobster_mem(item, params, info):
+   warn, crit = params
+   for line in info:
+     if line[0] == item:
+       val = int(line[1])
+       perfdata = [ ("percentage", val, warn, crit, 0, 100) ]
+       if val > crit:
+         return 2, "Memory usage is %d" % val, perfdata
+       elif val > warn:
+         return 1, "Memory usage is %d" % val, perfdata
+       else:
+         return 0, "Memory usage is %d%%" % val, perfdata
+
+check_info["lobster_mem"] = {
+    'check_function':            check_lobster_mem,
+    'inventory_function':        inventory_lobster_mem,
+    'service_description':       'Lobster Memory %s',
+    'group': 'lobster_mem',
+    'has_perfdata': True
+}
+
