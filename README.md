@@ -108,3 +108,11 @@ Monitor running DataWizard Lobster performance data with locally running monitor
 #### Installation
 
 The plugin is fully working, installation instructions to be done (not hard anyway).
+
+### DataWizard Lobster
+
+Monitor current network socket statistics summaries (currently total number of sockets and TIME_WAIT are monitored).
+
+#### Installation
+
+The plugin is fully working, installation instructions to be done.
