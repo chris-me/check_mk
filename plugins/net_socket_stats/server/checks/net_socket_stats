@@ -1,0 +1,32 @@
+net_socket_stats_default_values=(2000, 3000)
+
+def inventory_net_socket_stats(info):
+   for line in info:
+     item = line[0]
+     yield item, "net_socket_stats_default_values"
+
+def check_net_socket_stats(item, params, info):
+   warn, crit = params
+   for line in info:
+     if line[0] == item:
+       total = int(line[1])
+       waiting = int(line[2])
+       perfdata = [ 
+         ("TOTAL", total, warn, crit),
+         ("TIME_WAIT", waiting)
+       ]
+       if total > crit:
+         return 2, "Total sockets is %d, TIME_WAIT is %d" % (total, waiting), perfdata
+       elif total > warn:
+         return 1, "Total sockets is %d, TIME_WAIT is %d" % (total, waiting), perfdata
+       else:
+         return 0, "Total sockets is %d, TIME_WAIT is %d" % (total, waiting), perfdata
+
+check_info["net_socket_stats"] = {
+    'check_function':            check_net_socket_stats,
+    'inventory_function':        inventory_net_socket_stats,
+    'service_description':       'Net socket stats %s',
+    'group': 'net_socket_stats',
+    'has_perfdata': True
+}
+
