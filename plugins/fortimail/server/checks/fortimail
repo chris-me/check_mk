@@ -1,0 +1,73 @@
+
+snmp_info["fortimail"] = ( ".1.3.6.1.4.1.12356.105.1", [
+  "6.0", # CPU
+  "7.0", # MEM
+  "8.0", # Log disk
+  "9.0"  # Disk
+])
+
+def inventory_fortimail(info):
+  for item in ["CPU", "MEM", "Log", "Disk"]:
+    yield item, None
+
+def check_fortimail(item, params, info):
+  if item == "CPU":
+    warn = 80
+    crit = 90
+    val = int(info[0][0])
+    perfdata = [ ("percentage", val, warn, crit, 0, 100) ]
+    output_string = ("CPU usage is %d%%" % val)
+    if val > crit:
+      return 2, output_string, perfdata
+    elif val > warn:
+      return 1, output_string, perfdata
+    else:
+      return 0, output_string, perfdata
+  if item == "MEM":
+    warn = 80
+    crit = 90
+    val = int(info[0][1])
+    perfdata = [ ("percentage", val, warn, crit, 0, 100) ]
+    output_string = ("MEM usage is %d%%" % val)
+    if val > crit:
+      return 2, output_string, perfdata
+    elif val > warn:
+      return 1, output_string, perfdata
+    else:
+      return 0, output_string, perfdata
+  if item == "Log":
+    warn = 80
+    crit = 90
+    val = int(info[0][2])
+    perfdata = [ ("percentage", val, warn, crit, 0, 100) ]
+    output_string = ("LOG usage is %d%%" % val)
+    if val > crit:
+      return 2, output_string, perfdata
+    elif val > warn:
+      return 1, output_string, perfdata
+    else:
+      return 0, output_string, perfdata
+  if item == "Disk":
+    warn = 80
+    crit = 90
+    val = int(info[0][3])
+    perfdata = [ ("percentage", val, warn, crit, 0, 100) ]
+    output_string = ("Disk usage is %d%%" % val)
+    if val > crit:
+      return 2, output_string, perfdata
+    elif val > warn:
+      return 1, output_string, perfdata
+    else:
+      return 0, output_string, perfdata
+  else:
+    return 3, "Not implemented yet"
+
+check_info["fortimail"] = {
+  "check_function": check_fortimail,
+  "inventory_function": inventory_fortimail,
+  "service_description": "Fortimail",
+  "snmp_info": snmp_info["fortimail"],
+  'has_perfdata': True
+}
+
+

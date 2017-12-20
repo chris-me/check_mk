@@ -93,6 +93,14 @@ In the plugins / example directory:
 * https://www.karl-deutsch.at/dir_size_check_mk.html
 * https://mathias-kettner.de/checkmk_devel_perfometer.html
 
+### FortiMail
+
+Monitor FortiMail CPU, MEM, Log and Disk Usage (for now the warn / crit values are hardcoded and not adjustable via Web).
+
+#### Installation
+
+TBD
+
 ### Microsoft Exchange Database Whitespace
 
 Monitor Exchange Databases current whitespace. Includes Graphs and possibility to adjust values with WATO
